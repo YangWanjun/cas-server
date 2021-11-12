@@ -86,6 +86,14 @@ DATABASES = {
         'PASSWORD': os.environ['MYSQL_ENV_MYSQL_ROOT_PASSWORD'],
         'HOST': os.environ['MYSQL_PORT_3306_TCP_ADDR'],
         'PORT': os.environ['MYSQL_PORT_3306_TCP_PORT'],
+        'OPTIONS': {
+            # (1071, 'Specified key was too long; max key length is 767 bytes')を回避するため
+            # innodb_large_prefixを有効にすることでキープレフィックスの制限を3072バイトまで拡張することができるとのこと
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';"
+                            "SET GLOBAL innodb_file_format=BARRACUDA;"
+                            "SET GLOBAL innodb_file_per_table=ON;"
+                            "SET GLOBAL innodb_large_prefix=ON;",
+        },
     }
 }
 
