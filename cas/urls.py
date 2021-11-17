@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.urls import include
+from django.contrib import admin
+from django.contrib.auth.models import Group
+from django.urls import include, path
 
 from account.views import google_login
 
+admin.site.unregister(Group)
+admin.site.site_header = 'Central Authentication Service'
+admin.site.site_title = 'Central Authentication Service'
+
 urlpatterns = [
+    path('admin/', admin.site.urls),
     url(r'', include('mama_cas.urls')),
     url(r'^google-login/$', google_login, name="google-login"),
 ]
