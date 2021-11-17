@@ -33,12 +33,12 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form" method="post">
                     {% csrf_token %}
-					<span class="login100-form-title p-b-20">
+					<span class="login100-form-title p-b-30">
 						<b>ようこそ！</b>
 					</span>
                     {% include "mama_cas/_messages.html" %}
                     <div class="btn-wrapper text-center">
-                        <a href="https://api.oa.e-business.co.jp/google-login/" class="btn btn-outline-primary btn-lg">
+                        <a href="{% url 'google-login' %}?service={{ request.GET.service|urlencode }}" class="btn btn-outline-primary btn-lg">
                             <span class="btn-inner--icon"><img alt="" src="/static/images/icons/google.svg"></span>
                             <span class="btn-inner--text">E-Business Mail</span>
                         </a>

@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import include
 
+from account.views import google_login
+
 urlpatterns = [
     url(r'', include('mama_cas.urls')),
+    url(r'^google-login/$', google_login, name="google-login"),
 ]

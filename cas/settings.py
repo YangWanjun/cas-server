@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-s&l@fn5k*#gw-&$vqm-#baj7^(g^(eu#kc8j*4$n+vv0^7!!dq'
+GP_CLIENT_ID = "198874743474-0mr4ft6t0o6nd3l192aurd1a52l1vjta.apps.googleusercontent.com"
+GP_CLIENT_SECRET = "GEMFLwJ2xTnr6uRqVqJOVLj3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV_MODE', None) == 'production':
@@ -30,7 +32,7 @@ else:
     DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+SESSION_COOKIE_AGE = 60 * 60 * 24  # 24時間
 
 # Application definition
 
