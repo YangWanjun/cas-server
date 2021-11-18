@@ -50,7 +50,7 @@ def google_login(request):
                 user.__dict__.update(data)
                 user.save()
             login(request, user)
-            messages.info(request, "Single sign-on session started for %s" % user)
+            # messages.info(request, "Single sign-on session started for %s" % user)
 
             service = base64.b64decode(request.GET.get('state')).decode()
             if service:
