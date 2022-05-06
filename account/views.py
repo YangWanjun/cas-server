@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.urls import reverse
 from mama_cas.models import ServiceTicket
+from mama_cas.utils import redirect as cas_redirect
 
 User.add_to_class(
     "__str__",
@@ -55,7 +56,7 @@ def google_login(request):
             service = base64.b64decode(request.GET.get('state')).decode()
             if service:
                 st = ServiceTicket.objects.create_ticket(service=service, user=user, primary=True)
-                return redirect(service, params={'ticket': st.ticket})
+                return cas_redirect(service, params={'ticket': st.ticket})
             return redirect('cas_login')
         else:
             messages.error(
